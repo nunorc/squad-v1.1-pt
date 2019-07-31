@@ -2,7 +2,7 @@
 # squad-v1.1-pt
 
 Portuguese translation of the 
-[SQuAD](https://rajpurkar.github.io/SQuAD-explorer/) dataset.+
+[SQuAD](https://rajpurkar.github.io/SQuAD-explorer/) dataset.
 The translation was performed automatically using the Google Cloud API.
 
 All the credit for this dataset goes to the original authors, visit this
