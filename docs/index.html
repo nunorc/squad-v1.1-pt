@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>squad-v1.1-pt preview</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript">
+      var DATA = null
+      var IDX  = 0
+      var PAR  = 0
+
+      function update() {
+      	var curr = DATA[IDX]
+      	var par  = curr.paragraphs[PAR]
+
+      	document.getElementById('title').innerHTML = curr.title
+      	document.getElementById('paragraph').innerHTML = par.context
+
+      	var questions = document.getElementById('questions')
+      	questions.innerHTML = ""
+      	par.qas.forEach(function(q, i) {
+      	  const newq = document.createElement('p')
+      	  newq.classList.add('question')
+      	  newq.innerHTML = q.question
+      	  questions.appendChild(newq)
+
+      	  const newa = document.createElement('p')
+      	  newa.classList.add('answer')
+      	  newa.innerHTML = q.answers[0].text
+      	  questions.appendChild(newa)
+      	})
+
+      	document.getElementById('info').innerHTML = 'Element: '+IDX+' | Paragraph: '+PAR
+      }
+
+      function next(x) {
+      	if (x == 'e') {
+          IDX++
+          PAR = 0
+      	}
+        if (x == 'p')
+          PAR++
+      	update()
+      }
+
+      function prev(x) {
+      	if (x == 'e') {
+          IDX--
+          PAR = 0
+      	}
+        if (x == 'p')
+          PAR--
+      	update()      }
+
+      fetch('sample-v1.1-pt.json')
+        .then(response=>{
+          return response.json()
+        })
+        .then(data => {
+          DATA = data.data
+          update()
+        })
+    </script>
+  </head>
+  <body>
+    <h1>squad-v.1.1-pt preview</h1>
+    <hr />
+    <h2 id='title'></h2>
+    <p id='paragraph'></p>
+    <div id='questions'></div>
+    <div id='footer'>
+      <button type='button' onclick="prev('e')">&#8592; Element</button>
+      <button type='button' onclick="prev('p')">&#8592; Paragraph</button>
+      <button type='button' onclick="next('p')">Paragraph &#8594;</button>
+      <button type='button' onclick="next('e')">Element &#8594;</button>
+      <p id='info'></p>
+    </div>
+  </body>
+</html>
