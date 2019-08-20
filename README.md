@@ -8,6 +8,8 @@ The translation was performed automatically using the Google Cloud API.
 All the credit for this dataset goes to the original authors, visit this
 [page](https://rajpurkar.github.io/SQuAD-explorer/) for more information.
 
+For a preview of the dataset visit this [page](https://nunorc.github.io/squad-v1.1-pt/).
+
 Note: due to translation shortcomings some answers are not actually found
 in the corresponding context, this yields a `0` in the initial position
 of the answer.
